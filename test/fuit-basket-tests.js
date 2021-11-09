@@ -36,8 +36,7 @@ describe('The fruit_basket', function () {
         await basketOfFruit.dbInstertingQ('Banana', 3.00);
         await basketOfFruit.dbInstertingQ('Banana', 3.00);
 
-        assert.equal( [ {"quantity": 2,}], await basketOfFruit.getFruitsFromBasketOne());
-
+        assert.equal( [ {quantity: 2,}], await basketOfFruit.updateQTY());
 
     });
 
@@ -50,7 +49,8 @@ describe('The fruit_basket', function () {
         // console.log('list?'+ JSON.stringify(await basketOfFruit.getFruitsFromBasketOne()))
 
     
-        assert.equal( [ {"price": 3.00,}], await basketOfFruit.getPriceFromBasket());
+        assert.deepEqual( [ {"price": 3.00,}], await basketOfFruit.getPriceFromBasket());
 
     });
+    
 });
