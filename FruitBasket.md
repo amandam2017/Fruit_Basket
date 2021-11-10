@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/amandam2017/Fruit_Basket.svg?branch=main)](https://app.travis-ci.com/amandam2017/Fruit_Basket)
 # Fruit basket
 
 Create a `Factory Function` to manage fruit baskets.
