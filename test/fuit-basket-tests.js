@@ -51,7 +51,7 @@ describe('The fruit_basket', function () {
 
     });
 
-    it('should show the total price for a given fruit basket', async function () {
+    it('should show the total fruit for a given fruit basket', async function () {
 
         let basketOfFruit = FruitBasket(pool);
 
