@@ -4,7 +4,6 @@ module.exports = function FruitBasket(pool){
         const fruits = await pool.query('SELECT fruit_name FROM fruit_basket WHERE fruit_name = $1',[name]);
 
         // update the number of fruits in a given basket,
-
         if(fruits.rowCount === 0){
             const count = await pool.query('INSERT INTO fruit_basket (fruit_name, quantity, price) VALUES ($1,$2,$3)', [name, quantity, price]);
         }
