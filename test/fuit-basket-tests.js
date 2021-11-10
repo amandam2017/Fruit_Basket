@@ -21,8 +21,9 @@ describe('The fruit_basket', function () {
 
         let basketOfFruit = FruitBasket(pool);
 
-        await basketOfFruit.dbInstertingQ('Banana', 3.00)
-        console.log('list?'+ JSON.stringify(await basketOfFruit.getFruitsFromBasketOne()))
+        await basketOfFruit.dbInstertingQ('Banana', 1, 3.00);
+
+        // console.log('list?'+ JSON.stringify(await basketOfFruit.getFruitsFromBasketOne()))
 
     
         assert.deepEqual( [ {
@@ -33,10 +34,10 @@ describe('The fruit_basket', function () {
 
         let basketOfFruit = FruitBasket(pool);
 
-        await basketOfFruit.dbInstertingQ('Banana', 3.00);
-        await basketOfFruit.dbInstertingQ('Banana', 3.00);
+        await basketOfFruit.dbInstertingQ('Apple', 1, 3.00);
+        await basketOfFruit.updateQTY('Apple', 5);
 
-        assert.equal( [ {quantity: 2,}], await basketOfFruit.updateQTY());
+        assert.deepEqual( [ {fruit_name: 'Apple', quantity: 6, price: 3.00}], await basketOfFruit.getFruitsFromBasketOne());
 
     });
 
@@ -44,12 +45,20 @@ describe('The fruit_basket', function () {
 
         let basketOfFruit = FruitBasket(pool);
 
-        await basketOfFruit.dbInstertingQ('Banana', 3.00);
+        await basketOfFruit.dbInstertingQ('Apple', 1, 3.00);
 
-        // console.log('list?'+ JSON.stringify(await basketOfFruit.getFruitsFromBasketOne()))
+        assert.deepEqual( [ {price: 3.00}], await basketOfFruit.getPriceFromBasket('Apple'));
 
+    });
+
+    it('should show the total price for a given fruit basket', async function () {
+
+        let basketOfFruit = FruitBasket(pool);
+
+        await basketOfFruit.dbInstertingQ('Kiwi', 1, 8.00);
+        await basketOfFruit.updateQTY('Kiwi', 10);
     
-        assert.deepEqual( [ {"price": 3.00,}], await basketOfFruit.getPriceFromBasket());
+        assert.deepEqual( [ {"quantity": 11,}], await basketOfFruit.getTotalFruit('Kiwi'));
 
     });
     
