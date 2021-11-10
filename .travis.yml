@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "v16.18.3"
+  - "v12.18.3"
 
 env:
   - DATABASE_URL=postgresql://postgres@localhost:5432/fruit_basket_tests
