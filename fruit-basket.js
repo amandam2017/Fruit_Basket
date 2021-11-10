@@ -3,13 +3,13 @@ module.exports = function FruitBasket(pool){
         // find all the fruit baskets for a given fruit type,
         const fruits = await pool.query('SELECT fruit_name FROM fruit_basket WHERE fruit_name = $1',[name]);
 
-        // update the number of fruits in a given basket,
         if(fruits.rowCount === 0){
             const count = await pool.query('INSERT INTO fruit_basket (fruit_name, quantity, price) VALUES ($1,$2,$3)', [name, quantity, price]);
         }
 
     }
 
+    // update the number of fruits in a given basket,
     const updateQTY = async (fruitName, quantity) => {
         var udateBasket = await pool.query('UPDATE fruit_basket SET quantity = quantity+$2 WHERE fruit_name = $1', [fruitName, quantity]);
     }
@@ -21,7 +21,7 @@ module.exports = function FruitBasket(pool){
 
       //show the total price of a given fruit basket
       const getPriceFromBasket = async (fruit) => {
-        var totalPrice = await pool.query('SELECT sum(price * quantity) as price FROM fruit_basket WHERE fruit_name = $1', [fruit]);
+        var totalPrice = await pool.query('SELECT (price * quantity) as price FROM fruit_basket WHERE fruit_name = $1', [fruit]);
         return totalPrice.rows;
     }
 
